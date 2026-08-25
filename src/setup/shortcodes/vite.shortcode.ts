@@ -1,6 +1,5 @@
 const fs = require("fs/promises");
 const path = require("path");
-// const config = require("./../../../project.config.js");
 import { config } from "./../../../project.config";
 const PATH_PREFIX = config.PATH_PREFIX;
 
@@ -58,8 +57,3 @@ export const getChunkInformationFor = async(entryFilename: string) => {
 
     return entryChunk;
   }
-
-// exports.viteScriptTag = viteScriptTag;
-// exports.viteLinkStylesheetTags = viteLinkStylesheetTags;
-// exports.viteLegacyScriptTag = viteLegacyScriptTag;
-// exports.getChunkInformationFor = getChunkInformationFor;

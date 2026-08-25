@@ -1,5 +1,5 @@
-import { getHttpStatusValue } from './../../../_shared/http/http';
 import type { HEALTH_CHECK, TEST_URL } from './checks.d';
+import { getHttpStatusValue } from '@robert.tools/http';
 
 export const checkUrlStatus = (item: TEST_URL): HEALTH_CHECK => {
     const httpStatus: string = getHttpStatusValue(item.url);

@@ -1,9 +1,8 @@
-import { FS } from './../../_shared/fs/fs';
-import { getHttpStatusValue } from './../../_shared/http/http';
-import { LOG } from './../../_shared/log/log';
-import * as https from 'https';
 import type { HEALTH_CHECK } from './checks/checks.d';
 import type { TEST_URL } from './checks/checks.d';
+import { getHttpStatusValue } from '@robert.tools/http';
+import { LOG } from '@robert.tools/log';
+import { FS } from '@robert.tools/fs';
 
 const argv = process.argv;
 const fastCheck = argv.includes('--fast') || argv.includes('-f');
@@ -18,38 +17,6 @@ const TEST_CONNECTION_URLS: string[] = [
     // 'https://www.npmjs.com/',
 ];
 
-export const checkInternetConnection = async (
-    domain: string,
-    timeoutMs = 600
-): Promise<boolean> => {
-    return new Promise((resolve) => {
-        const req = https.get(domain, (res: any) => {
-            resolve(res.statusCode === 200);
-        });
-
-        req.on('error', () => {
-            resolve(false);
-        });
-
-        // Timeout: wenn keine Antwort in timeoutMs, abbrechen
-        req.setTimeout(timeoutMs, () => {
-            req.destroy();
-            resolve(false);
-        });
-    });
-};
-export const resolveDNS = (
-    domain: string,
-    timeoutMs = 600
-): Promise<boolean> => {
-    return checkInternetConnection(domain, timeoutMs);
-};
-// const hasDNS = resolveDNS('https://github.com', 600);
-// if (hasDNS) {
-//     LOG.OK('✅ DNS resolution worksx');
-// } else {
-//     LOG.FAIL('❌ DNS resolution failed');
-// }
 
 // check for _site folder and html files
 // check for internet connection (random url from list)
@@ -65,7 +32,7 @@ export const hasHTMLFiles = (path: string): HEALTH_CHECK[] => {
             result: true,
             message: `✅ _site folder exists`,
         });
-        const htmlFiles = FS.list(path).filter((file) =>
+        const htmlFiles = FS.list(path).filter((file: string) =>
             file.endsWith('.html')
         );
         if (htmlFiles.length > 0) {

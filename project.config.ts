@@ -30,10 +30,10 @@ const hostnameDev = 'localhost';
 const portVite = 3000;
 const hostVite = `http://${hostnameDev}:${portVite}`;
 
-const projectSlug = 'eleventy-nunjucks-template';
+const projectSlug = 'XXX-XXX';
 const logo = 'logo.svg';
 const menuIcon = 'burger.svg';
-const projectName = 'eleventy-nunjucks-template';
+const projectName = 'XXX-XXX';
 const configId = 'eleventynunjuckstemplate';
 
 // source → dist pairs (authoring format)
