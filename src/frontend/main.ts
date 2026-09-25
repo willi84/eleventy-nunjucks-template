@@ -2,13 +2,17 @@
 import './_shared/index.css';
 import { setupSearch } from './components/molecules/search/search.molecule';
 
-(() => {
-        // insert function here
-        setupSearch();
+// activate in prod or explicitly with a flag
+const ENABLE_SERVICE_WORKER =
+    import.meta.env.PROD || import.meta.env.VITE_ENABLE_SW === 'true';
 
-        if ('serviceWorker' in navigator && import.meta.env.PROD) {
-                window.addEventListener('load', () => {
-                        navigator.serviceWorker.register('/sw.js').catch(() => undefined);
-                });
-        }
+(() => {
+    // insert function here
+    setupSearch();
+
+    if ('serviceWorker' in navigator && ENABLE_SERVICE_WORKER) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').catch(() => undefined);
+        });
+    }
 })();

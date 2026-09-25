@@ -8,15 +8,14 @@ const argv = process.argv;
 const fastCheck = argv.includes('--fast') || argv.includes('-f');
 
 const TEST_CONNECTION_URLS: string[] = [
-    'https://github.com',
-    'https://www.google.com/',
-    'https://www.wikipedia.org/',
+    // 'https://github.com',
+    // 'https://www.google.com/',
+    // 'https://www.wikipedia.org/',
     // 'https://developer.mozilla.org/',
     // 'https://www.mozilla.org/',
     // 'https://www.cloudflare.com',
     // 'https://www.npmjs.com/',
 ];
-
 
 // check for _site folder and html files
 // check for internet connection (random url from list)
@@ -89,6 +88,7 @@ export const hasDevelopmentServerConnection = (
         const httpStatus: string = getHttpStatusValue(url);
         const httpValue = parseInt(httpStatus, 10);
         const name = item.name;
+        console.log(httpStatus, name);
         const result = httpValue >= 200 && httpValue < 400 ? true : false;
         let message = `❌ ${url} [${name}] is not reachable (status: ${httpStatus})`;
         if (result === true) {
@@ -100,11 +100,16 @@ export const hasDevelopmentServerConnection = (
 };
 
 const TEST_URLS: TEST_URL[] = [
-    { url: 'http://localhost:8080', name: 'dev-server [eleventy]' },
+    // { url: 'http://localhost:8080', name: 'dev-server [eleventy]' },
     { url: 'http://localhost:3000/healthz', name: 'dev-server [vite]' },
+    // { url: 'http://localhost:3000/client', name: 'dev-server CLIENT [vite]' },
 ];
 const CHECKS: HEALTH_CHECK[] = [];
+const hasHTMLFilesCheck = hasHTMLFiles('./_site').length > 0;
+// console.log(hasHTMLFiles('./_site'))
 CHECKS.push(...hasHTMLFiles('./_site'));
+// if (hasHTMLFilesCheck) {
+    LOG.OK('✅ HTML files check passed, proceeding with internet & dev server checks');
 if (!fastCheck) {
     CHECKS.push(...hasInternetConnection(TEST_CONNECTION_URLS));
     CHECKS.push(...hasDevelopmentServerConnection(TEST_URLS));

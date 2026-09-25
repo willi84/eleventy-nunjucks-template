@@ -1,5 +1,6 @@
+import { LOG } from '@robert.tools/log';
 // project.config.ts
-console.log('Loading project.config.ts...');
+LOG.OK('Loading project.config.ts...');
 // internal camelCase constants (authoring style)
 const base = 'src';
 const relativeBase = './..';
@@ -40,7 +41,10 @@ const configId = 'eleventynunjuckstemplate';
 const staticAssetsAuthoring: Array<{ src: string; dist: string }> = [
     { src: './src/stations', dist: 'stations' },
     { src: './src/frontend/assets/', dist: 'assets' },
-    { src: './src/frontend/manifest.webmanifest', dist: 'manifest.webmanifest' },
+    {
+        src: './src/frontend/manifest.webmanifest',
+        dist: 'manifest.webmanifest',
+    },
     { src: './src/frontend/sw.js', dist: 'sw.js' },
 ];
 

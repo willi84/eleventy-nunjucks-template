@@ -28,6 +28,18 @@
 
 ## config
 
+### eslint + prettier
+* eslint.config.ts is loaded via `eslint.config.cjs` using Jiti
+* `eslint.config.cjs` is the entry point for ESLint configuration in this project
+* prettier rules are defined in `.prettierrc` and referred to by ESLint via `eslint-config-prettier`
+
+### eleventy
+The main eleventy configuration can be found in: `.eleventy.config.ts`
+* **variables** defined in `project.config.ts`
+* **filters** are defined in `src/setup/filters/filter.config.ts`
+* **shortcodes** are defined in `src/setup/shortcodes/vite.shortcode.ts`
+
+
 ### linters
 - **ESLint**: for linting the code (rules are in `.eslintrc.js`)
 - **Prettier**: for formatting the code (rules are in `.prettierrc`)

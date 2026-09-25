@@ -5,22 +5,14 @@
         "alt": "Logo Image"
     },
     "footer": {
-        "text": "Made with ❤️ by Robert Willemelis"
+        "text": "Made with ❤️ by the team of notfall.ms"
     },
     "links": [
         {
-            "text": "Github",
+            "text": "Installieren",
             "url": "https://github.com/willi84/",
             "target": "_blank",
             "image_before": "github.svg",
-            "size": [20,20],
-            "type": "button"
-        },
-        {
-            "text": "LinkedIn",
-            "url": "https://de.linkedin.com/in/robertwillemelis",
-            "target": "_blank",
-            "image_before": "linkedin.svg",
             "size": [20,20],
             "type": "button"
         }

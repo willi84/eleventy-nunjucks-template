@@ -14,14 +14,17 @@ menu:
      {{
            component("image", {
              image: main.logo.src,
-             class: "",
+             class: "foobar",
              alt_prefix: main.logo.alt,
-             width: "50%",
+             width: "30%",
              height: "auto",
-             lazy: true
+             inline: true
            })
          }}
  </div>
+ {% set sample = [{ type: 'ok', name: 'foo'}]%}
+{# test field #} 
+
 
 <div class="container my-5 text-center">
     {% for link in main.links %}

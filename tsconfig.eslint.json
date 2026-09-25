@@ -4,6 +4,8 @@
         "src/**/*.ts",
         "src/**/*.tsx",
         "eslint.config.ts",
+        "*.ts",
+        ".*.ts",
         "scripts/**/*.ts"
     ]
 }

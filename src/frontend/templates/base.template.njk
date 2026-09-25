@@ -16,7 +16,7 @@
 
     {% if build.env == "production" %}
         {# Add any CSS from the main script #}
-        {% viteLinkStylesheetTags config.ENTRY_FILE %}
+        {% viteLinkStylesheetTags config.ENTRY_FILE, config.PATH_PREFIX %}
     {% endif %}
 
 </head>
@@ -77,11 +77,11 @@
     {#  scripts #}
     {% if build.env == "production" %}
         {# We must read the production scripts from the Vite manifest. We defer that logic to a custom shortcode #}
-        {% viteScriptTag config.ENTRY_FILE %}
+        {% viteScriptTag config.ENTRY_FILE, config.PATH_PREFIX %}
+        {% viteLegacyScriptTag config.ENTRY_FILE, config.PATH_PREFIX %}
     {% else %}
         {# The vite development client #}
         <script type="module" src="{{config.HOST_VITE}}/@vite/client"></script>
-
         {# The main script entry for development (pointing to vite) #}
         <script type="module" src="{{config.HOST_VITE}}/{{config.ENTRY_FILE}}"></script>
     {% endif %}

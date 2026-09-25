@@ -32,11 +32,17 @@
 
 {# TEMPLATE #}
 {% if image_url is defined %}
+
+  {# integrate svg as inline #}
+  {% if image_url | contains('.svg') and params.inline is defined and params.inline == true %}
+      {{ image_url | svg([params.width, params.height], class) | safe }}
+  {% else %}
     <img data-component="image.atom"
         data-neutral-image="true"
         class="{{class}} x"
         src="{{image_url}}"
         {{alt_text | safe}} {{width | safe}} {{height | safe}} {{lazy_loading | safe}}>
+  {% endif %}
 {% endif %}
 {% if params.placeholder is defined %}
     <span

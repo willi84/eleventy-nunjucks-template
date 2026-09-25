@@ -3,7 +3,7 @@
  */
 import { CurlItem } from '../../../index.d';
 // import { checkUrlStatus } from './checks';
-import * as cmd from '../../../_shared/cmd/cmd';
+import * as cmd from '@robert.tools/cmd';
 
 describe('checkUrlStatus()', () => {
     let responseSpy: jest.SpyInstance;

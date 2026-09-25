@@ -36,6 +36,15 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // Don't intercept development infrastructure
+    if (
+        requestUrl.pathname.startsWith('/browser-sync/') ||
+        requestUrl.pathname.startsWith('/__vite')
+    ) {
+        return;
+    }
+
+
     if (request.mode === 'navigate') {
         event.respondWith(
             fetch(request).catch(async () => {
